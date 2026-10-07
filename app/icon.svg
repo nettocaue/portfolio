@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" fill="#0B0B0C"/>
+  <!-- c -->
+  <text x="2" y="24" font-family="system-ui,sans-serif" font-weight="600" font-size="22" fill="#EDEDEA">c</text>
+  <!-- / badge -->
+  <g transform="translate(10,5) skewX(-12)">
+    <rect x="0" y="0" width="12" height="22" rx="3" fill="url(#sv)"/>
+    <text x="6" y="17" font-family="system-ui,sans-serif" font-weight="600" font-size="18" fill="#0B0B0C" text-anchor="middle">/</text>
+  </g>
+  <!-- n -->
+  <text x="22" y="24" font-family="system-ui,sans-serif" font-weight="600" font-size="22" fill="#EDEDEA">n</text>
+  <defs>
+    <linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#F6F7F9"/>
+      <stop offset="45%"  stop-color="#BBC0C7"/>
+      <stop offset="58%"  stop-color="#8A8F97"/>
+      <stop offset="100%" stop-color="#E2E5E8"/>
+    </linearGradient>
+  </defs>
+</svg>
