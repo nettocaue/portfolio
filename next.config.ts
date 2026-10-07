@@ -1,9 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   experimental: {
     agentFeedback: true,
+  },
+  async headers() {
+    return [
+      {
+        source: "/projetos/curriculo-caue-netto.pdf",
+        headers: [
+          {
+            key: "Content-Disposition",
+            value: 'attachment; filename="curriculo-caue-netto.pdf"',
+          },
+        ],
+      },
+    ];
   },
   cacheComponents: true,
   partialPrefetching: true,
