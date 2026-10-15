@@ -5,28 +5,25 @@ const STACK = [
 
 export default function StackStrip() {
   return (
-    <div
-      style={{
-        borderTop: "1px solid #1E1E21",
-        borderBottom: "1px solid #1E1E21",
-        padding: "18px 16px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10px 28px",
-          justifyContent: "center",
-          fontFamily: "var(--font-geist-mono), monospace",
-          fontSize: 13,
-          color: "#7E7E7A",
-        }}
-      >
-        {STACK.map((tech) => (
-          <span key={tech}>{tech}</span>
+    <div style={{
+      borderTop: "1px solid #2d2f3e",
+      borderBottom: "1px solid #2d2f3e",
+      padding: "14px 0 14px 52px",
+      background: "#21222c",
+    }}>
+      <div style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "8px 24px",
+        fontFamily: "var(--font-mono), monospace",
+        fontSize: 12,
+        color: "#44475a",
+      }}>
+        <span style={{ color: "#6272a4", marginRight: 8 }}>//</span>
+        {STACK.map((tech, i) => (
+          <span key={tech} style={{ color: i % 3 === 0 ? "#8be9fd" : i % 3 === 1 ? "#50fa7b" : "#ffb86c" }}>
+            {tech}
+          </span>
         ))}
       </div>
     </div>

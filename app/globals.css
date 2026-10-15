@@ -1,94 +1,137 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument-serif);
+  --font-sans:  var(--font-jetbrains);
+  --font-mono:  var(--font-geist-mono);
+  --font-jb:    var(--font-jetbrains);
 
-  --color-bg:        #0B0B0C;
-  --color-surface:   #121214;
-  --color-surface-2: #0F0F11;
-  --color-border:    #1E1E21;
-  --color-border-2:  #26262A;
-  --color-border-3:  #3A3A3F;
-  --color-text:      #EDEDEA;
-  --color-muted:     #A3A39F;
-  --color-subtle:    #7E7E7A;
-  --color-label:     #B8BCC3;
-  --color-tag:       #CFCFCB;
+  --color-bg:       #282a36;
+  --color-surface:  #21222c;
+  --color-line:     #44475a;
+  --color-border:   #191a24;
+  --color-comment:  #6272a4;
+  --color-text:     #f8f8f2;
+  --color-purple:   #bd93f9;
+  --color-pink:     #ff79c6;
+  --color-cyan:     #8be9fd;
+  --color-green:    #50fa7b;
+  --color-yellow:   #f1fa8c;
+  --color-orange:   #ffb86c;
+  --color-red:      #ff5555;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  background: #0B0B0C;
-}
+html { scroll-behavior: smooth; background: #282a36; }
 
 body {
-  background: #0B0B0C;
-  color: #EDEDEA;
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background: #282a36;
+  color: #f8f8f2;
+  font-family: var(--font-jb), "JetBrains Mono", monospace;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
 }
 
-/* ─── Utilitários de gradiente metálico ─── */
-@layer utilities {
-  .text-chrome {
-    background: linear-gradient(100deg, #8E939B 0%, #F4F5F7 28%, #A9AEB6 48%, #ECEEF1 66%, #858A92 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 8px; height: 8px; }
+::-webkit-scrollbar-track  { background: #282a36; }
+::-webkit-scrollbar-thumb  { background: #44475a; border-radius: 4px; }
+*                          { scrollbar-width: thin; scrollbar-color: #44475a #282a36; }
 
-  .bg-silver-btn {
-    background: linear-gradient(180deg, #F4F5F7 0%, #C9CCD1 45%, #9EA3AB 55%, #DADDE1 100%);
-    box-shadow: inset 0 1px 0 #ffffff, inset 0 -1px 0 #6F747C, 0 6px 24px rgba(200, 205, 212, 0.12);
-  }
+/* ── VS Code section layout ───────────────────────────────── */
+.vsc-section {
+  display: flex;
+  padding: 56px 0;
+  border-bottom: 1px solid #2d2f3e;
+}
+.vsc-section:last-child { border-bottom: none; }
 
-  .bg-silver-badge {
-    background: linear-gradient(180deg, #F6F7F9 0%, #BBC0C7 45%, #8A8F97 58%, #E2E5E8 100%);
-    box-shadow: inset 0 1px 0 #ffffff, inset 0 -1px 0 #6F747C;
-  }
-
-  /* Reveal animation — fade + slide up */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.vsc-gutter {
+  width: 56px;
+  min-width: 56px;
+  padding: 0 16px 0 0;
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  color: #3d3f52;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 1.9;
 }
 
-/* Project row hover */
-.project-row:hover .project-title {
-  color: #C9CCD1;
+.vsc-section-body {
+  flex: 1;
+  min-width: 0;
+  padding-right: 48px;
+  max-width: 900px;
 }
 
-.project-row:hover .project-thumb .project-img {
-  transform: scale(1.04);
-}
+/* ── Syntax token helpers ─────────────────────────────────── */
+.tok-keyword { color: #ff79c6; }
+.tok-fn      { color: #50fa7b; }
+.tok-string  { color: #f1fa8c; }
+.tok-number  { color: #bd93f9; }
+.tok-comment { color: #6272a4; font-style: italic; }
+.tok-var     { color: #8be9fd; }
+.tok-prop    { color: #ffb86c; }
+.tok-punct   { color: #f8f8f2; }
 
+/* ── Project row hover ────────────────────────────────────── */
+.project-row:hover .project-title { color: #bd93f9; }
+.project-row:hover .project-thumb .project-img { transform: scale(1.04); }
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Activity bar: move to RIGHT side */
+  .vsc-activity-bar {
+    left: auto !important;
+    right: 0 !important;
+    border-right: none !important;
+    border-left: 1px solid #191a24 !important;
+  }
+
+  /* Sidebar: hidden by default, slides in as overlay when open */
+  .vsc-sidebar {
+    left: 0 !important;
+    top: 68px !important;
+    width: 80vw !important;
+    max-width: 260px !important;
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+    z-index: 950 !important;
+    box-shadow: 4px 0 24px #00000066;
+  }
+  .vsc-sidebar--open {
+    transform: translateX(0) !important;
+  }
+
+  /* Tab bar: full width leaving space for activity bar on right */
+  .vsc-tab-bar  { left: 0 !important; right: 48px !important; }
+
+  /* Main: no left offset, right margin for activity bar */
+  .vsc-main     { margin-left: 0 !important; margin-right: 48px !important; }
+
+  /* Title bar: hide center filename but keep it in flow so traffic lights stay right */
+  .vsc-title-center { visibility: hidden !important; }
+
+  /* Status bar: hide secondary items */
+  .vsc-status-extra { display: none !important; }
+
+  /* Section layout */
+  .vsc-section       { padding: 32px 0; }
+  .vsc-gutter        { display: none; }
+  .vsc-section-body  { padding-right: 16px; padding-left: 16px; max-width: 100%; }
+
+  /* Projects */
+  .vsc-projects-list { padding-left: 16px !important; }
+  .project-row       { padding-right: 16px !important; }
+}
