@@ -25,7 +25,7 @@ export async function POST(req: Request) {
 
   if (error) {
     console.error("[contact] Resend error:", JSON.stringify(error));
-    return NextResponse.json({ error: "Falha ao enviar. Tente novamente." }, { status: 500 });
+    return NextResponse.json({ error: "Falha ao enviar.", detail: error }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });

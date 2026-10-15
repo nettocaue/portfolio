@@ -6,6 +6,7 @@ import { SITE } from "@/data/site";
 const LINE_NUMS = Array.from({ length: 28 }, (_, i) => i + 1);
 
 type Status = "idle" | "sending" | "ok" | "error";
+type ErrorDetail = { name?: string; message?: string } | null;
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -26,6 +27,7 @@ export default function Contact() {
   const [email, setEmail]     = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus]   = useState<Status>("idle");
+  const [errorDetail, setErrorDetail] = useState<ErrorDetail>(null);
   const [focused, setFocused] = useState<string | null>(null);
 
   const send = async (e: React.FormEvent) => {
@@ -37,7 +39,13 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
-      setStatus(res.ok ? "ok" : "error");
+      if (res.ok) {
+        setStatus("ok");
+      } else {
+        const body = await res.json().catch(() => ({}));
+        setErrorDetail(body.detail ?? null);
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -190,6 +198,11 @@ export default function Contact() {
               {status === "error" && (
                 <p style={{ fontFamily: "var(--font-jb), monospace", fontSize: 12, color: "#ff5555", margin: 0 }}>
                   <span className="tok-comment">// erro ao enviar — tente novamente.</span>
+                  {errorDetail && (
+                    <span style={{ display: "block", marginTop: 4, color: "#ff555599" }}>
+                      {errorDetail.name}: {errorDetail.message}
+                    </span>
+                  )}
                 </p>
               )}
 
