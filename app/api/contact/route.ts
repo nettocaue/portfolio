@@ -10,16 +10,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Campos obrigatórios faltando." }, { status: 400 });
   }
 
+  if (!process.env.RESEND_API_KEY) {
+    console.error("[contact] RESEND_API_KEY não definida");
+    return NextResponse.json({ error: "Configuração de e-mail ausente." }, { status: 500 });
+  }
+
   const { error } = await resend.emails.send({
     from: "Portfolio <onboarding@resend.dev>",
     to: "caue.netto123@gmail.com",
-    replyTo: email,
+    reply_to: email,
     subject: `Portfolio — mensagem de ${name}`,
     text: `Nome: ${name}\nEmail: ${email}\n\n${message}`,
   });
 
   if (error) {
-    console.error("[contact] Resend error:", error);
+    console.error("[contact] Resend error:", JSON.stringify(error));
     return NextResponse.json({ error: "Falha ao enviar. Tente novamente." }, { status: 500 });
   }
 
