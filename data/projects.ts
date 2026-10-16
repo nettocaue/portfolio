@@ -77,6 +77,18 @@ export const PROJECTS: Project[] = [
     repo: "https://github.com/nettobruno/professor-countdown-legacy",
     image: "fallen.png",
   },
+  {
+    num: "06",
+    key: "dev",
+    cat: "Dev",
+    status: "No ar",
+    title: "Fluxo — finanças pessoais",
+    desc: "App de finanças pessoais que substitui a planilha de controle de gastos: lançamentos rápidos, saldo que passa sozinho de um mês para o outro, contas fixas automáticas e investimentos acompanhados à parte, com metas anuais. Importa a planilha antiga (.xlsx), funciona no computador e no celular e pode ser instalado no iPhone como web app.",
+    stack: "React · TypeScript · Vite · Supabase · Vercel",
+    cta: "Ver o app",
+    href: "https://finance-fluxo.vercel.app/",
+    image: "fluxo.png",
+  },
 ];
 
 export const FILTERS = [
