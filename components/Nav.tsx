@@ -52,9 +52,9 @@ export default function Nav() {
 
         {(
           [
-            ["#projetos", "Projetos"],
             ["#sobre",    "Sobre"],
             ["#experiencia", "Experiência"],
+            ["#projetos", "Projetos"],
             ["#contato",  "Contato"],
           ] as const
         ).map(([href, label]) => (

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist_Mono, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -8,20 +14,22 @@ const geistMono = Geist_Mono({
   weight: ["400", "500"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://caue.netto.dev"),
-  title: "Cauê Netto — Suporte & Desenvolvimento Web",
+  title: "Cauê Netto — Suporte ao Cliente",
   description:
-    "Portfólio de Cauê Netto: suporte técnico e desenvolvimento web. Três anos do lado de quem usa o produto, construindo do lado de quem faz.",
+    "Portfólio de Cauê Netto: suporte ao cliente e atendimento técnico. Três anos ajudando pessoas a resolver problemas com clareza e paciência.",
   openGraph: {
-    title: "Cauê Netto — Suporte & Desenvolvimento Web",
-    description: "Suporte que entende código. Código que entende gente.",
+    title: "Cauê Netto — Suporte ao Cliente",
+    description:
+      "Suporte que resolve. Atendimento que acolhe.",
     url: "https://caue.netto.dev",
     siteName: "Cauê Netto",
     locale: "pt_BR",
@@ -29,16 +37,20 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cauê Netto — Suporte & Desenvolvimento Web",
-    description: "Suporte que entende código. Código que entende gente.",
+    title: "Cauê Netto — Suporte ao Cliente",
+    description: "Suporte que resolve. Atendimento que acolhe.",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="pt-BR"
-      className={`${geistMono.variable} ${jetbrainsMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body>{children}</body>
     </html>

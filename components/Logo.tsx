@@ -5,7 +5,7 @@ export default function Logo() {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        fontFamily: "var(--font-jb), monospace",
+        fontFamily: "var(--font-geist-sans), sans-serif",
         fontWeight: 600,
         fontSize: 24,
         letterSpacing: "-0.05em",

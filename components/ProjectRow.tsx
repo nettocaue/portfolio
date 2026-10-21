@@ -1,52 +1,55 @@
-"use client";
-
 import Image from "next/image";
 import type { Project } from "@/data/projects";
 
-const CAT_COLORS: Record<string, string> = {
-  dev: "#bd93f9",
-  sup: "#50fa7b",
-};
-
-interface Props { project: Project }
+interface Props {
+  project: Project;
+}
 
 export default function ProjectRow({ project }: Props) {
-  const accentColor = CAT_COLORS[project.key] ?? "#8be9fd";
-
   return (
     <article
       className="project-row"
       style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: 28,
-        padding: "32px 40px 32px 0",
-        borderBottom: "1px solid #2d2f3e",
+        gap: 32,
+        padding: "36px 0",
+        borderBottom: "1px solid #1E1E21",
         alignItems: "center",
       }}
     >
       {/* Info */}
-      <div style={{ flex: "999 1 480px", minWidth: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-        <div style={{
+      <div
+        style={{
+          flex: "999 1 520px",
+          minWidth: 0,
           display: "flex",
-          gap: 10,
-          alignItems: "center",
-          flexWrap: "wrap",
-          fontFamily: "var(--font-mono), monospace",
-          fontSize: 12,
-        }}>
-          <span style={{ color: "#44475a" }}>{project.num}</span>
-          <span style={{
-            border: `1px solid ${accentColor}44`,
-            background: `${accentColor}18`,
-            color: accentColor,
-            padding: "3px 10px",
-            borderRadius: 3,
-            fontWeight: 500,
-          }}>
+          flexDirection: "column",
+          gap: 14,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            gap: 10,
+            alignItems: "center",
+            flexWrap: "wrap",
+            fontFamily: "var(--font-geist-mono), monospace",
+            fontSize: 12,
+          }}
+        >
+          <span style={{ color: "#7E7E7A" }}>{project.num}</span>
+          <span
+            style={{
+              border: "1px solid #3A3A3F",
+              color: "#CFCFCB",
+              padding: "4px 10px",
+              borderRadius: 999,
+            }}
+          >
             {project.cat}
           </span>
-          <span style={{ color: "#50fa7b", fontSize: 11 }}>● {project.status}</span>
+          <span style={{ color: "#7E7E7A" }}>{project.status}</span>
         </div>
 
         <h3
@@ -54,58 +57,49 @@ export default function ProjectRow({ project }: Props) {
           style={{
             margin: 0,
             fontWeight: 400,
-            fontSize: "clamp(22px, 2.4vw, 28px)",
+            fontSize: 32,
             letterSpacing: "-0.02em",
-            lineHeight: 1.2,
-            color: "#f8f8f2",
+            lineHeight: 1.15,
             transition: "color 0.2s ease",
           }}
         >
           {project.title}
         </h3>
 
-        <p style={{ margin: 0, color: "#6272a4", fontSize: 15, lineHeight: 1.65, maxWidth: 580 }}>
+        <p
+          style={{
+            margin: 0,
+            color: "#A3A39F",
+            fontSize: 16,
+            lineHeight: 1.65,
+            maxWidth: 620,
+          }}
+        >
           {project.desc}
         </p>
 
-        <div style={{
-          fontFamily: "var(--font-mono), monospace",
-          fontSize: 12,
-          color: "#44475a",
-          display: "flex",
-          gap: 6,
-          flexWrap: "wrap",
-        }}>
-          {project.stack.split(" · ").map((s) => (
-            <span key={s} style={{
-              background: "#21222c",
-              border: "1px solid #44475a",
-              color: "#8be9fd",
-              padding: "2px 8px",
-              borderRadius: 3,
-            }}>
-              {s}
-            </span>
-          ))}
+        <div
+          style={{
+            fontFamily: "var(--font-geist-mono), monospace",
+            fontSize: 13,
+            color: "#8A8A86",
+          }}
+        >
+          {project.stack}
         </div>
 
-        <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
           <a
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              fontSize: 13,
-              fontFamily: "var(--font-mono), monospace",
-              textDecoration: "none",
-              color: "#bd93f9",
-              border: "1px solid #bd93f944",
-              padding: "8px 16px",
-              borderRadius: 4,
-              transition: "background 0.15s",
+              fontSize: 14,
+              width: "fit-content",
+              textDecoration: "underline",
+              textUnderlineOffset: 4,
+              color: "#EDEDEA",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#bd93f922")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
           >
             {project.cta} ↗
           </a>
@@ -115,9 +109,8 @@ export default function ProjectRow({ project }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                fontSize: 12,
-                fontFamily: "var(--font-mono), monospace",
-                color: "#6272a4",
+                fontSize: 13,
+                color: "#7E7E7A",
                 textDecoration: "underline",
                 textUnderlineOffset: 4,
               }}
@@ -132,19 +125,19 @@ export default function ProjectRow({ project }: Props) {
       <div
         className="project-thumb"
         style={{
-          flex: "1 1 300px",
+          flex: "1 1 340px",
           minWidth: 0,
-          height: 200,
-          borderRadius: 8,
+          height: 220,
+          borderRadius: 16,
           overflow: "hidden",
-          border: project.image ? `1px solid #44475a` : "1px dashed #44475a",
-          background: "#21222c",
+          border: project.image ? "none" : "1px dashed #3A3A3F",
+          background: "#121214",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily: "var(--font-mono), monospace",
-          fontSize: 12,
-          color: "#44475a",
+          fontFamily: "var(--font-geist-mono), monospace",
+          fontSize: 13,
+          color: "#7E7E7A",
           position: "relative",
         }}
       >
@@ -157,7 +150,7 @@ export default function ProjectRow({ project }: Props) {
             className="project-img"
           />
         ) : (
-          "[sem imagem]"
+          "[print do projeto]"
         )}
       </div>
     </article>

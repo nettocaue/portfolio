@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Cauê Netto — Suporte & Desenvolvimento Web";
+export const alt = "Cauê Netto — Suporte ao Cliente";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -61,7 +61,7 @@ export default function OGImage() {
             lineHeight: 1.1,
           }}
         >
-          Suporte que entende código.
+          Suporte que resolve.
         </div>
 
         {/* Line 2 */}
@@ -75,7 +75,7 @@ export default function OGImage() {
             lineHeight: 1.1,
           }}
         >
-          Código que entende gente.
+          Atendimento que acolhe.
         </div>
 
         {/* Subtitle */}
